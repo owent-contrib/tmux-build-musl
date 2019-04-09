@@ -1,0 +1,5 @@
+/libevent-*
+/ncurses-*
+/prebuilt
+/utf8proc-*
+/tmux-*
