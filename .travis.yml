@@ -1,0 +1,73 @@
+language: c
+
+env:
+  global:
+    - LANG="zh_CN.UTF-8"
+    - TMUX_VERSION=2.8
+    - UTF8PROC_VERSION=2.3.0
+    - LIBEVENT_VERSION=2.1.8-stable
+    - NCURSES_VERSION=6.1
+    - CMAKE_PREFIX=$HOME/prebuilt/cmake ;
+    - CMAKE_LINUX_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.sh ;
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      sudo: required
+      env: CC=musl-gcc CXX=musl-gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - musl
+            - musl-dev
+            - musl-tools
+            - libtinfo-dev
+    
+install:
+    - if [ "$TRAVIS_OS_NAME" == "linux" ] ; then
+
+          if [ ! -e "$CMAKE_BIN" ]; then
+
+            mkdir -p "$CMAKE_PREFIX";
+
+            curl --insecure -L "$CMAKE_LINUX_URL" -o cmake-linux.sh ;
+
+            bash cmake-linux.sh --skip-license --prefix=$CMAKE_PREFIX ;
+
+          fi
+
+      fi
+
+script: 
+    - export PATH=$CMAKE_PREFIX:$PATH ;
+    - if [ -e prebuilt ]; then rm -rf prebuilt; fi
+    - chmod +x ./build_tmux.sh ;
+    - ./build_tmux.sh ;
+
+cache:
+  apt: true
+  directories:
+  - $CMAKE_PREFIX
+
+notifications:
+  email: false
+  irc:
+    template:
+      - "%{repository}/%{branch} (%{commit} - %{author}): %{build_url}: %{message}"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: FpssIbMGTjAG4Ny8TYIKn8vmEhkODR2Bqvx46k8/LDRwDRW+CHilULz8KvdZ66CELCjF9n2a88Msnl5B1PVviLX0H+mw8yqqM04gE/BN2l7cNGR941tBlKnGfnT0CPGuLBX+zKETy+9k8FeluYNDwlCklbI2hnGly2F9vpK55Z337TlTd6LFkJhElv6v3fmGH8LRGV/cen5He7NzgmnFq/lqnNUdE9Cg8LQ8tLc8fOHOAWJAmQzP/stKSoHZWGwp1rgc36im4FSkSrF+2k4vK2GurbTTBjOeI2/wyUxcii29t1ACTQMVCNVO27dUoi4F0jEOzbtX5JYsNO+GL3kFj6FeIGAVo8ogoqDfEEmeAuQA+95SWh/m9VVAWTvdIEbUEH3rxHGs0CAzkrxJOxVKgje+cA+ZRz1DmVle74icLL5tV6pQoHeG2iii3e8tpmmu42ovrp9z5qKSrFyVEmQXyN1fs6T8/t8KL4/1dL0gwmuKNdaXLo8TA8jRCJZNdamhtoa1NnrIoy+XPwoD4/su3s6hyBznvNwki07yIcprCc6ubKipj86KLdbhtkaJlIBR+D98jb1b8ngE2Y+OhsPk5DnbPERn7NbR3bP3KanXw9i/h23R9OkoSwku1hio/n4nx2p9Hjn8wICrtuVCSJnf+SVlRT5uzumig1VgDxWLMaw=
+  file_glob: true
+  file: "prebuilt/*.tar.*"
+  skip_cleanup: true
+  overwrite: true
+  draft: true
+  on:
+    all_branches: true
+    tags: true
+  
