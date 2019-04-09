@@ -44,8 +44,8 @@ install:
 script: 
     - export PATH=$CMAKE_PREFIX:$PATH ;
     - if [ -e prebuilt ]; then rm -rf prebuilt; fi
-    - chmod +x ./build_tmux.sh ;
-    - ./build_tmux.sh ;
+    - chmod +x ./build-tmux.sh ;
+    - ./build-tmux.sh ;
 
 cache:
   apt: true
