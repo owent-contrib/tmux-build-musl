@@ -61,13 +61,12 @@ notifications:
 deploy:
   provider: releases
   api_key:
-    secure: FpssIbMGTjAG4Ny8TYIKn8vmEhkODR2Bqvx46k8/LDRwDRW+CHilULz8KvdZ66CELCjF9n2a88Msnl5B1PVviLX0H+mw8yqqM04gE/BN2l7cNGR941tBlKnGfnT0CPGuLBX+zKETy+9k8FeluYNDwlCklbI2hnGly2F9vpK55Z337TlTd6LFkJhElv6v3fmGH8LRGV/cen5He7NzgmnFq/lqnNUdE9Cg8LQ8tLc8fOHOAWJAmQzP/stKSoHZWGwp1rgc36im4FSkSrF+2k4vK2GurbTTBjOeI2/wyUxcii29t1ACTQMVCNVO27dUoi4F0jEOzbtX5JYsNO+GL3kFj6FeIGAVo8ogoqDfEEmeAuQA+95SWh/m9VVAWTvdIEbUEH3rxHGs0CAzkrxJOxVKgje+cA+ZRz1DmVle74icLL5tV6pQoHeG2iii3e8tpmmu42ovrp9z5qKSrFyVEmQXyN1fs6T8/t8KL4/1dL0gwmuKNdaXLo8TA8jRCJZNdamhtoa1NnrIoy+XPwoD4/su3s6hyBznvNwki07yIcprCc6ubKipj86KLdbhtkaJlIBR+D98jb1b8ngE2Y+OhsPk5DnbPERn7NbR3bP3KanXw9i/h23R9OkoSwku1hio/n4nx2p9Hjn8wICrtuVCSJnf+SVlRT5uzumig1VgDxWLMaw=
+    secure: gCMMEsuAMqbZmDmcWq4A+NYZ4s7NPNlzrqLFbz0G0QHR05QVklQBh0MRrxi9NLq6mmbYJgxm4VYkQVZfyA5aG0vUNd91As1KVOcGZ/sRZCjMkZVNgkzT9vs1cAyG4/hXvwa/Odu0JNqV6pTfBsMCX46Nut/UkoCY8Au+s1ix2jGeeRO38spyixwjnsT0r9/mzlLs+4s0voowjiRNWjUOlJdpOBNXkG7KKk0M8uIe3EnDWsVZEHsbLbhhbh9/sCtj6bgAFXM0iPZtT+DVUlmqs2v8uapVGUVA+4O9tTVz9zE1rTNen3CravVqXV+tz4mcu958h0p31qtmdFKcC+94dATqQUcvXY9JVeMmCWHQ84Nl7oIX4sxB08qS6FnQMqXVovZPf1GdB6oi0S5vHy1w+df2tBLLLNAYOXerE8eO9/bqy7f2s1DpDXlyJ6sRt6o1dpga+PMfPe+yB9ev1kQBt2ISSAtz1N7Ix0GkXXWYDWm5lys13oRc0KmwYc4KwF1HeZA0SEiCziwAcpbxLt4jTGW9uPwW24+h12rDDLOfqLWb+JCW5COWoWjCAPp7+zggnnRzHVW+aSJsvyQY76HQ2qFjmPCfe8FwsoPPqcY8gswyzC4Ho3DUSAWZEKLmU98KUbjCAYtp4R+NwTKnvbffhPu831dcLD2zGgLLlLT86hA=
   file_glob: true
-  file: "prebuilt/*.tar.*"
+  file: "prebuilt/*.musl-bin.tar.*"
   skip_cleanup: true
   overwrite: true
   draft: true
   on:
     all_branches: true
     tags: true
-  

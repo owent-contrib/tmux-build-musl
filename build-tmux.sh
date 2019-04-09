@@ -191,8 +191,8 @@ fi
 
 # pack tmux
 cd "$BUILD_DIR/prebuilt";
-tar -zcvf tmux-$TMUX_VERSION.bin.tar.gz tmux;
+tar -zcvf tmux-$TMUX_VERSION.musl-bin.tar.gz tmux;
 cd "$BUILD_DIR";
 
-mv -f "$BUILD_DIR/prebuilt/tmux-$TMUX_VERSION.bin.tar.gz" ./ ;
+mv -f "$BUILD_DIR/prebuilt/tmux-$TMUX_VERSION.musl-bin.tar.gz" ./ ;
 echo "all jobs done.";
