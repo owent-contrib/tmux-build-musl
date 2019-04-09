@@ -63,7 +63,7 @@ deploy:
   api_key:
     secure: gCMMEsuAMqbZmDmcWq4A+NYZ4s7NPNlzrqLFbz0G0QHR05QVklQBh0MRrxi9NLq6mmbYJgxm4VYkQVZfyA5aG0vUNd91As1KVOcGZ/sRZCjMkZVNgkzT9vs1cAyG4/hXvwa/Odu0JNqV6pTfBsMCX46Nut/UkoCY8Au+s1ix2jGeeRO38spyixwjnsT0r9/mzlLs+4s0voowjiRNWjUOlJdpOBNXkG7KKk0M8uIe3EnDWsVZEHsbLbhhbh9/sCtj6bgAFXM0iPZtT+DVUlmqs2v8uapVGUVA+4O9tTVz9zE1rTNen3CravVqXV+tz4mcu958h0p31qtmdFKcC+94dATqQUcvXY9JVeMmCWHQ84Nl7oIX4sxB08qS6FnQMqXVovZPf1GdB6oi0S5vHy1w+df2tBLLLNAYOXerE8eO9/bqy7f2s1DpDXlyJ6sRt6o1dpga+PMfPe+yB9ev1kQBt2ISSAtz1N7Ix0GkXXWYDWm5lys13oRc0KmwYc4KwF1HeZA0SEiCziwAcpbxLt4jTGW9uPwW24+h12rDDLOfqLWb+JCW5COWoWjCAPp7+zggnnRzHVW+aSJsvyQY76HQ2qFjmPCfe8FwsoPPqcY8gswyzC4Ho3DUSAWZEKLmU98KUbjCAYtp4R+NwTKnvbffhPu831dcLD2zGgLLlLT86hA=
   file_glob: true
-  file: "prebuilt/*.musl-bin.tar.*"
+  file: "*.musl-bin.tar.*"
   skip_cleanup: true
   overwrite: true
   draft: true
