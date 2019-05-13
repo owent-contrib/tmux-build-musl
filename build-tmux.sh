@@ -108,6 +108,8 @@ if [ ! -e "ncurses-$NCURSES_VERSION" ]; then
 fi
 
 cd ncurses-$NCURSES_VERSION;
+# ncursesw: --enable-ext-colors --enable-widec
+# build with clang: CC=clang CXX=clang++ CFLAGS="-Wno-unused-command-line-argument" AR=llvm-ar LD=lld
 ./configure --prefix="$BUILD_PREBUILT_DEP" --without-cxx --without-cxx-binding --with-termlib --enable-termcap  \
     --enable-ext-colors --enable-ext-mouse --enable-bsdpad --enable-opaque-curses                               \
     --with-terminfo-dirs=/etc/terminfo:/usr/share/terminfo:/lib/terminfo                                        \
