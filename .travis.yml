@@ -3,12 +3,12 @@ language: c
 env:
   global:
     - LANG="zh_CN.UTF-8"
-    - TMUX_VERSION=2.8
-    - UTF8PROC_VERSION=2.3.0
-    - LIBEVENT_VERSION=2.1.8-stable
+    - TMUX_VERSION=2.9a
+    - UTF8PROC_VERSION=2.4.0
+    - LIBEVENT_VERSION=2.1.10-stable
     - NCURSES_VERSION=6.1
     - CMAKE_PREFIX=$HOME/prebuilt/cmake ;
-    - CMAKE_LINUX_URL=https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.sh ;
+    - CMAKE_LINUX_URL=https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.14.5-Linux-x86_64.sh ;
 
 matrix:
   include:

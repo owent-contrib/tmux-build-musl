@@ -3,7 +3,7 @@
 BUILD_DIR="$(cd $(dirname $0) && pwd)";
 
 if [ -z "$TMUX_VERSION" ]; then
-    TMUX_VERSION=2.8;
+    TMUX_VERSION=2.9a;
 fi
 
 if [ -z "$NCURSES_VERSION" ]; then
@@ -11,11 +11,11 @@ if [ -z "$NCURSES_VERSION" ]; then
 fi
 
 if [ -z "$LIBEVENT_VERSION" ]; then
-    LIBEVENT_VERSION=2.1.8-stable;
+    LIBEVENT_VERSION=2.1.10-stable;
 fi
 
 if [ -z "$UTF8PROC_VERSION" ]; then
-    UTF8PROC_VERSION=2.3.0;
+    UTF8PROC_VERSION=2.4.0;
 fi
 
 BUILD_PREBUILT_DEP="$BUILD_DIR/prebuilt/dep";
