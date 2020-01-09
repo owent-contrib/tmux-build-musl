@@ -3,7 +3,7 @@
 BUILD_DIR="$(cd $(dirname $0) && pwd)";
 
 if [ -z "$TMUX_VERSION" ]; then
-    TMUX_VERSION=2.9a;
+    TMUX_VERSION=3.0a;
 fi
 
 if [ -z "$NCURSES_VERSION" ]; then
