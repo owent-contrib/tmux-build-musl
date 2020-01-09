@@ -3,7 +3,7 @@ language: c
 env:
   global:
     - LANG="zh_CN.UTF-8"
-    - TMUX_VERSION=2.9a
+    - TMUX_VERSION=3.0a
     - UTF8PROC_VERSION=2.4.0
     - LIBEVENT_VERSION=2.1.10-stable
     - NCURSES_VERSION=6.1
