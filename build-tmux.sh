@@ -35,6 +35,11 @@ if [[ 0 -eq $? ]]; then
 else
   export CFLAGS="$CFLAGS -fPIC -I$BUILD_PREBUILT_DEP/dep/include"
 fi
+if [[ "x$PKG_CONFIG_PATH" == "x" ]]; then
+  export PKG_CONFIG_PATH="$BUILD_PREBUILT_DEP/lib/pkgconfig"
+else
+  export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$BUILD_PREBUILT_DEP/lib/pkgconfig"
+fi
 
 function download_pkg() {
   if [[ $# -gt 1 ]]; then
@@ -151,8 +156,7 @@ if [[ 0 -ne $? ]]; then
   exit 1
 fi
 # install
-cp ../*.h "$BUILD_PREBUILT_DEP/include"
-cp *.a "$BUILD_PREBUILT_DEP/lib"
+cmake --build . --target install
 
 # ============ build tmux ============
 cd "$BUILD_DIR"
