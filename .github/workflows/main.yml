@@ -1,0 +1,48 @@
+name: "main"
+
+on: # @see https://help.github.com/en/articles/events-that-trigger-workflows#webhook-events
+  push:
+    branches: # Array of patterns that match refs/heads
+      - main
+    tags:
+      - "*"
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build: # job id, can be any string
+    # Job name is Build And Publish
+    name: Build And Publish
+    # This job runs on Linux
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2 # https://github.com/actions/checkout
+        with:
+          lfs: true
+      - name: Build & Test
+        shell: bash
+        env:
+          USE_CC: ${{ matrix.cc }}
+          VCPKG_TARGET_TRIPLET: ${{ matrix.triplet }}
+          USE_SSL: ${{ matrix.ssl }}
+        run: |
+          sudo apt-get update ;
+          sudo apt-get install --no-install-recommends --no-install-suggests -y musl musl-dev musl-tools libtinfo-dev ;
+          if [[ -e prebuilt ]]; then
+            rm -rf prebuilt; 
+          fi
+          chmod +x ./build-tmux.sh ;
+          ./build-tmux.sh ;
+      - uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "*.musl-bin.tar.gz"
+          tags: "true"
+          overwrite: true
+          verbose: true
