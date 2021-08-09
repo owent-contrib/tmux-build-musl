@@ -3,17 +3,17 @@ language: c
 env:
   global:
     - LANG="zh_CN.UTF-8"
-    - TMUX_VERSION=3.1b
-    - UTF8PROC_VERSION=2.5.0
-    - LIBEVENT_VERSION=2.1.11-stable
+    - TMUX_VERSION=3.2a
+    - UTF8PROC_VERSION=2.6.1
+    - LIBEVENT_VERSION=2.1.12-stable
     - NCURSES_VERSION=6.2
     - CMAKE_PREFIX=$HOME/prebuilt/cmake ;
-    - CMAKE_LINUX_URL=https://github.com/Kitware/CMake/releases/download/v3.17.2/cmake-3.17.2-Linux-x86_64.sh ;
+    - CMAKE_LINUX_URL=https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-Linux-x86_64.sh ;
 
 matrix:
   include:
     - os: linux
-      dist: xenial
+      # dist: xenial
       sudo: required
       env: CC=musl-gcc CXX=musl-gcc
       addons:
