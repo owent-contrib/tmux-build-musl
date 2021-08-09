@@ -179,13 +179,22 @@ fi
 NCURSES_HEADER="$(find $BUILD_PREBUILT_DEP/include -name curses.h)"
 
 cd tmux-$TMUX_VERSION
+if [[ -e "$BUILD_PREBUILT_DEP/lib/pkgconfig/ncursesw.pc" ]]; then
+  TMUX_NCURSES_CFLAGS="$(pkg-config --cflags $BUILD_PREBUILT_DEP/lib/pkgconfig/ncursesw.pc)"
+  TMUX_NCURSES_LINK="$(pkg-config --libs $BUILD_PREBUILT_DEP/lib/pkgconfig/ncursesw.pc)"
+else
+  TMUX_NCURSES_CFLAGS="$(pkg-config --cflags $BUILD_PREBUILT_DEP/lib/pkgconfig/ncurses.pc)"
+  TMUX_NCURSES_LINK="$(pkg-config --libs $BUILD_PREBUILT_DEP/lib/pkgconfig/ncurses.pc)"
+fi
+
+env LDFLAGS="-L$BUILD_PREBUILT_DEP/lib" CFLAGS="-I$BUILD_PREBUILT_DEP/include" \
 ./configure --prefix="$BUILD_PREBUILT_TMUX" \
 --enable-static --enable-utf8proc \
-PKG_CONFIG_PATH="$BUILD_PREBUILT_DEP/lib/pkgconfig" \
-LIBNCURSES_CFLAGS="-I$(dirname $NCURSES_HEADER)" \
-LIBNCURSES_LIBS="-L$BUILD_PREBUILT_DEP/lib" \
-LIBEVENT_CFLAGS="-I$BUILD_PREBUILT_DEP/include" \
-LIBEVENT_LIBS="-L$BUILD_PREBUILT_DEP/lib -levent"
+PKG_CONFIG_PATH="$PKG_CONFIG_PATH" \
+LIBNCURSES_CFLAGS="$TMUX_NCURSES_CFLAGS" \
+LIBNCURSES_LIBS="$TMUX_NCURSES_LINK" \
+LIBEVENT_CFLAGS="$(pkg-config --cflags $BUILD_PREBUILT_DEP/lib/pkgconfig/libevent.pc)" \
+LIBEVENT_LIBS="$(pkg-config --libs $BUILD_PREBUILT_DEP/lib/pkgconfig/libevent.pc)"
 
 make -j4
 make install
